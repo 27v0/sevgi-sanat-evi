@@ -19,7 +19,7 @@ import { defaultSiteSettings } from '../sanity/client';
     </p>
   </div>
 
-  <form id="lead-form" class="max-w-xl mx-auto space-y-4">
+  <form id="lead-form" data-whatsapp={defaultSiteSettings.whatsapp} class="max-w-xl mx-auto space-y-4">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
         <label for="fullName" class="block text-xs font-medium text-stone-300 mb-1.5">Adınız Soyadınız *</label>
@@ -108,24 +108,31 @@ import { defaultSiteSettings } from '../sanity/client';
   </form>
 </div>
 
-<script is:inline define:vars={{ whatsappNumber: defaultSiteSettings.whatsapp }}>
-  const form = document.getElementById('lead-form');
-  const feedback = document.getElementById('form-feedback');
+<script is:inline>
+  const leadForm = document.getElementById('lead-form');
+  const feedbackEl = document.getElementById('form-feedback');
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
+  if (leadForm && feedbackEl) {
+    leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const fullName = document.getElementById('fullName').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const interest = document.getElementById('interest').value;
-      const notes = document.getElementById('notes').value.trim();
+      const targetForm = e.currentTarget;
+      const targetWhatsapp = targetForm?.getAttribute('data-whatsapp') || '905550000000';
+      const nameInput = document.getElementById('fullName');
+      const phoneInput = document.getElementById('phone');
+      const interestSelect = document.getElementById('interest');
+      const notesInput = document.getElementById('notes');
+
+      const fullName = (nameInput && 'value' in nameInput) ? nameInput.value.trim() : '';
+      const phone = (phoneInput && 'value' in phoneInput) ? phoneInput.value.trim() : '';
+      const interest = (interestSelect && 'value' in interestSelect) ? interestSelect.value : '';
+      const notes = (notesInput && 'value' in notesInput) ? notesInput.value.trim() : '';
 
       const messageText = `Merhaba Sevgi Sanat Evi! Ben ${fullName}. Telefonum: ${phone}. İlgilendiğim Branş: ${interest}.${notes ? ' Not: ' + notes : ''}`;
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(messageText)}`;
+      const whatsappUrl = `https://wa.me/${targetWhatsapp}?text=${encodeURIComponent(messageText)}`;
 
-      feedback.classList.remove('hidden', 'bg-red-900/50', 'text-red-300');
-      feedback.classList.add('bg-emerald-900/50', 'text-emerald-300', 'border', 'border-emerald-500/30');
-      feedback.textContent = 'Harika! Ön kayıt talebiniz hazırlandı. WhatsApp üzerinden mesaj aktarılıyor...';
+      feedbackEl.classList.remove('hidden', 'bg-red-900/50', 'text-red-300');
+      feedbackEl.classList.add('bg-emerald-900/50', 'text-emerald-300', 'border', 'border-emerald-500/30');
+      feedbackEl.textContent = 'Harika! Ön kayıt talebiniz hazırlandı. WhatsApp üzerinden mesaj aktarılıyor...';
 
       setTimeout(() => {
         window.open(whatsappUrl, '_blank');
