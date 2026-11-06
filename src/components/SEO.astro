@@ -1,0 +1,123 @@
+---
+import { defaultSiteSettings, defaultCourses, defaultFaqs } from '../sanity/client';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+const {
+  title = `${defaultSiteSettings.title} - ${defaultSiteSettings.tagline}`,
+  description = defaultSiteSettings.description,
+  canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href,
+  ogImage = '/og-image.jpg',
+} = Astro.props;
+
+// JSON-LD Structured Data for Music and Art School Local Business
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['EducationalOrganization', 'MusicSchool', 'ArtGallery', 'LocalBusiness'],
+  '@id': 'https://sevgisanatevi.com/#organization',
+  name: 'Sevgi Sanat Evi',
+  alternateName: ['Sevgi Sanat Evi Müzik Kursu', 'Sevgi Sanat Evi Resim Kursu', 'Sevgi Sanat'],
+  url: 'https://sevgisanatevi.com',
+  logo: 'https://sevgisanatevi.com/logo.svg',
+  description: description,
+  telephone: defaultSiteSettings.phone,
+  email: defaultSiteSettings.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: defaultSiteSettings.address,
+    addressLocality: defaultSiteSettings.city,
+    addressRegion: 'İstanbul',
+    addressCountry: 'TR',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 40.9905,
+    longitude: 29.0298,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '09:00',
+      closes: '21:00',
+    },
+  ],
+  priceRange: '₺₺',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Müzik ve Resim Kursları',
+    itemListElement: defaultCourses.map((c, idx) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Course',
+        name: c.title,
+        description: c.summary,
+        provider: {
+          '@type': 'Organization',
+          name: 'Sevgi Sanat Evi',
+          sameAs: 'https://sevgisanatevi.com',
+        },
+      },
+      position: idx + 1,
+    })),
+  },
+  sameAs: [
+    defaultSiteSettings.instagram,
+  ],
+};
+
+// FAQ Schema for rich search results in Google
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: defaultFaqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content="sevgi sanat evi, müzik kursu, resim kursu, piyano dersi, keman kursu, gitar eğitimi, bağlama dersi, karakalem atölyesi, yağlı boya kursu, güzel sanatlara hazırlık, konservatuvara hazırlık, çocuk sanat atölyesi, kadıköy sanat evi, istanbul müzik kursu" />
+<meta name="author" content="Sevgi Sanat Evi" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="language" content="Turkish" />
+<link rel="canonical" href={canonical} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:site_name" content="Sevgi Sanat Evi" />
+<meta property="og:locale" content="tr_TR" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={ogImage} />
+
+<!-- Web App & Theme -->
+<meta name="theme-color" content="#f59e0b" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Structured Data / JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />

@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { defaultSiteSettings, defaultCourses, defaultFaqs } from '../sanity/client';
+---
+
+<Layout
+  title="Sevgi Sanat Evi | Müzik ve Resim Kursları (Yakında Yayındayız)"
+  description="Sevgi Sanat Evi; piyano, keman, klasik ve elektro gitar, bağlama, şan, karakalem, yağlı boya ve konservatuvar / güzel sanatlara hazırlık kursları ile çok yakında kapılarını açıyor! Ön kayıt fırsatları için tıklayın."
+>
+  <Header />
+
+  <main class="flex-1">
+    <!-- Hero / Coming Soon Section -->
+    <section class="relative pt-12 pb-20 sm:pt-20 sm:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div class="max-w-5xl mx-auto text-center">
+        <!-- Coming soon pill badge -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold mb-8 animate-pulse">
+          <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+          <span>Web Sitemiz Yenileniyor • Çok Yakında Yayındayız!</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6 font-serif-art">
+          Sanatın ve Müziğin <br class="hidden sm:inline" />
+          <span class="gradient-text">İlham Veren Dünyası</span>
+        </h1>
+
+        <p class="max-w-2xl mx-auto text-base sm:text-lg lg:text-xl text-stone-300 leading-relaxed mb-10">
+          <strong class="text-amber-400 font-semibold">Sevgi Sanat Evi</strong>; çocuklardan yetişkinlere her yaş grubuna özel piyano, gitar, keman, bağlama, şan, karakalem ve yağlı boya atölyeleriyle yeni dönemde sizlerle buluşuyor.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-16">
+          <a
+            href="#on-kayit"
+            class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-base shadow-xl shadow-amber-500/20 hover:scale-105 transition-all duration-300 text-center"
+          >
+            Ön Kayıt İndirimi Alın
+          </a>
+          <a
+            href={`https://wa.me/${defaultSiteSettings.whatsapp}?text=${encodeURIComponent('Merhaba, Sevgi Sanat Evi müzik ve resim kursları hakkında bilgi almak istiyorum.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-stone-900/90 hover:bg-stone-800 text-stone-200 border border-stone-700/80 font-semibold text-base transition-all duration-300 text-center flex items-center justify-center gap-2"
+          >
+            <svg class="w-5 h-5 text-emerald-400 fill-current" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.102-.115.434-.506.549-.68.116-.173.232-.144.39-.086.159.058 1.011.477 1.184.564.173.087.289.13.332.202.043.073.043.419-.101.824z"></path>
+            </svg>
+            <span>WhatsApp İletişim</span>
+          </a>
+        </div>
+
+        <!-- Highlights Ticker -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-6 border-t border-stone-800/80">
+          <div class="p-4 rounded-2xl bg-stone-900/50 border border-stone-800">
+            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-serif-art">Birebir</div>
+            <div class="text-xs text-stone-400 mt-1">Özel Enstrüman Eğitimi</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-stone-900/50 border border-stone-800">
+            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-serif-art">%100</div>
+            <div class="text-xs text-stone-400 mt-1">Sınav Başarı Oranı</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-stone-900/50 border border-stone-800">
+            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-serif-art">4+ Yaş</div>
+            <div class="text-xs text-stone-400 mt-1">Çocuk & Yetişkin Grupları</div>
+          </div>
+          <div class="p-4 rounded-2xl bg-stone-900/50 border border-stone-800">
+            <div class="text-2xl sm:text-3xl font-extrabold text-amber-400 font-serif-art">Akademik</div>
+            <div class="text-xs text-stone-400 mt-1">Konservatuvarlı Kadro</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="kurslar" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Eğitim Branşlarımız</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4 font-serif-art">
+          Müzik ve Resimde Profesyonel Adımlar
+        </h2>
+        <p class="text-stone-300 text-sm sm:text-base">
+          İster hobi olarak başlayın, ister konservatuvar veya güzel sanatlar fakültesi hedefleriniz için hazırlanın; her seviyeye özel müfredat hazırlıyoruz.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {defaultCourses.map((course) => (
+          <div class="glass-card glass-card-hover rounded-2xl p-6 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                  {course.badge}
+                </span>
+                <span class="text-stone-500 text-xs">Açılışa Özel</span>
+              </div>
+              <h3 class="text-lg font-bold text-white mb-2 font-serif-art group-hover:text-amber-400 transition-colors">
+                {course.title}
+              </h3>
+              <p class="text-xs text-stone-400 leading-relaxed mb-4">
+                {course.summary}
+              </p>
+            </div>
+            <div class="pt-4 border-t border-stone-800/80 flex items-center justify-between text-xs text-stone-300">
+              <span class="text-stone-400">{course.details}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="neden-biz" class="py-20 px-4 sm:px-6 lg:px-8 bg-stone-900/30 border-y border-stone-800/60">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Neden Sevgi Sanat Evi?</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-6 font-serif-art leading-snug">
+              Sanatı Yalnızca Öğretmiyor, Yaşatıyoruz
+            </h2>
+            <p class="text-stone-300 text-sm sm:text-base leading-relaxed mb-6">
+              Sevgi Sanat Evi olarak amacımız; sanatseverlerin içindeki yaratıcı potansiyeli en doğru tekniklerle açığa çıkarmak, sanatı bir görev değil keyifli ve hayat boyu sürecek bir tutku haline getirmektir.
+            </p>
+
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-amber-500/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Birebir Kişiye Özel Eğitim</h4>
+                  <p class="text-xs text-stone-400 mt-0.5">Öğrencinin öğrenme hızına, ilgi duyduğu müzik/sanat tarzına göre şekillenen dinamik ders programı.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-amber-500/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Akademik Eğitmen Kadrosu</h4>
+                  <p class="text-xs text-stone-400 mt-0.5">Konservatuvar ve Güzel Sanatlar Fakültelerinden mezun, pedagojik formasyona sahip uzman eğitimciler.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-amber-500/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Yıl Sonu Sahne & Sergi Deneyimi</h4>
+                  <p class="text-xs text-stone-400 mt-0.5">Dönem sonlarında düzenlenen konser ve resim sergileri ile sahne tecrübesi ve özgüven kazanımı.</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0 mt-0.5 border border-amber-500/20">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+                <div>
+                  <h4 class="text-sm font-bold text-white">Konforlu Çalışma & Prova Odaları</h4>
+                  <p class="text-xs text-stone-400 mt-0.5">Akustik yalıtımlı müzik odaları ve doğal ışık alan ferah resim atölyeleri.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="glass-card rounded-3xl p-8 border border-amber-500/20">
+              <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-rose-500 p-0.5 mx-auto mb-4">
+                  <div class="w-full h-full bg-stone-950 rounded-[14px] flex items-center justify-center text-amber-400 text-2xl font-bold font-serif-art">
+                    S
+                  </div>
+                </div>
+                <h3 class="text-xl font-bold text-white font-serif-art">Sevgi Sanat Evi Ailesine Katılın</h3>
+                <p class="text-xs text-stone-400 mt-1">Ön kayıt yaptıran ilk 50 öğrenciye özel avantajlı harç paketleri</p>
+              </div>
+
+              <div class="space-y-3 text-xs text-stone-300">
+                <div class="p-3.5 rounded-xl bg-stone-900/80 border border-stone-800 flex items-center justify-between">
+                  <span>🎹 Ücretsiz Seviye Tespiti & Tanışma Dersi</span>
+                  <span class="text-emerald-400 font-bold">Hediye</span>
+                </div>
+                <div class="p-3.5 rounded-xl bg-stone-900/80 border border-stone-800 flex items-center justify-between">
+                  <span>🎨 İlk Ay Atölye Malzemesi Desteği</span>
+                  <span class="text-emerald-400 font-bold">Dahil</span>
+                </div>
+                <div class="p-3.5 rounded-xl bg-stone-900/80 border border-stone-800 flex items-center justify-between">
+                  <span>🎼 Prova ve Bireysel Etüt Odası Kullanımı</span>
+                  <span class="text-emerald-400 font-bold">Ücretsiz</span>
+                </div>
+              </div>
+
+              <div class="mt-6 text-center">
+                <a
+                  href="#on-kayit"
+                  class="block w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-sm transition-colors text-center shadow-lg shadow-amber-500/20"
+                >
+                  Hemen Ön Kayıt Formunu Doldur
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section (Boosts SEO & Search Snippets) -->
+    <section id="sss" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Merak Edilenler</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-3 font-serif-art">
+          Sıkça Sorulan Sorular
+        </h2>
+        <p class="text-stone-300 text-sm">
+          Aklınıza takılan soruların cevaplarını aşağıda bulabilirsiniz.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {defaultFaqs.map((faq, index) => (
+          <details class="glass-card rounded-2xl border border-stone-800 p-5 group open:border-amber-500/30 transition-all">
+            <summary class="font-bold text-stone-100 text-sm sm:text-base cursor-pointer list-none flex items-center justify-between gap-4">
+              <span class="flex items-center gap-3">
+                <span class="text-amber-400 text-xs font-mono font-bold">0{index + 1}.</span>
+                <span>{faq.question}</span>
+              </span>
+              <span class="text-stone-400 group-open:rotate-180 transition-transform duration-200">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </summary>
+            <div class="mt-4 pt-3 border-t border-stone-800/80 text-xs sm:text-sm text-stone-300 leading-relaxed">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Lead Form & Pre-registration CTA -->
+    <section id="on-kayit" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <LeadForm />
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
